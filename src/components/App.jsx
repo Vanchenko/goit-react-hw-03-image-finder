@@ -5,20 +5,8 @@ import { Button } from "./Button/Button";
 import { Audio } from 'react-loader-spinner';
 import { Modal } from './Modal/Modal';
 import { loadImagesPixabay } from "api/api";
-import axios from "axios";
 import css from './App.module.css'
 
-// const URL = "https://pixabay.com/api/";
-// const options = {
-//   params: {
-//         key: '35244614-3f1384186f27e7cacc119fb8b',
-//       //  page: page,
-//         per_page: 12,
-//         image_type: "photo",
-//         orientation: "horizontal",
-//         safesearch: true,
-//     }
-// }
 export class App extends Component {
   state = {
     searchWord: '',
@@ -63,14 +51,12 @@ export class App extends Component {
     return (
       <div className={css.App}>
         <Searchbar SearchOnSubmit={this.onSubmit} />
-        {!showModal && (<>
           <ImageGallery images={images} onImageClick={this.onImageClick} />
           <Button onLoadMore={this.onLoadMore} />
-          </>
-         )}
-        {showModal && (<Modal bigImage={bigImage}>
-          <button type="button" onClick={this.onCloseModal}>Close</button>
-        </Modal>)}
+        {showModal && (
+          <Modal bigImage={bigImage}>
+            <button type="button" onClick={this.onCloseModal}>Close</button>
+          </Modal>)}
         {/* <Audio /> */}
         <p>{test}</p>
       </div>
