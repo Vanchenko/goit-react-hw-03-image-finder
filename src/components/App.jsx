@@ -23,13 +23,12 @@ export class App extends Component {
   };
 
   async componentDidUpdate(_prevProps, prevState) {
-    console.log('cDU:', this.state.searchWord);
     const { searchWord, page } = this.state;
     if (prevState.searchWord !== searchWord || prevState.page !== page) {
       this.setState({ isLoading: true });
       try {
         const resp = await loadImagesPixabay(searchWord, page);
-        console.log('didMount: ', resp);
+      //  console.log('didMount: ', resp);
         if (!resp.length) {
           this.setState({
             isEmpty: true,
@@ -54,7 +53,6 @@ export class App extends Component {
   onSubmit = evt => {
     evt.preventDefault();
     const sw = evt.target.elements[1].value;
-    console.log('SearchWord', sw);
     if (sw !== '') {
       this.setState({
         searchWord: sw,
@@ -69,12 +67,9 @@ export class App extends Component {
   };
 
   onLoadMore = () => {
-    //  console.log('Btn LoadMore', evt.currentTarget);
-    // const tt = this.state.page + 1;
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
   onImageClick = evt => {
-    console.dir(evt.target.dataset.bigimg);
     this.setState({ showModal: true });
     this.setState({ bigImage: evt.target.dataset.bigimg });
   };
@@ -106,10 +101,7 @@ export class App extends Component {
         )}
         {showMoreBtn && <Button onLoadMore={this.onLoadMore} />}
         {showModal && (
-          <Modal bigImage={bigImage}>
-            <button type="button" onClick={this.onCloseModal}>
-              Close
-            </button>
+          <Modal bigImage={bigImage} onClose={this.onCloseModal}>
           </Modal>
         )}
       </div>
