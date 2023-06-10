@@ -5,3 +5,11 @@
     grid-gap: 16px;
     padding-bottom: 24px;
 }
+.messageIsEmpty {
+    margin-left: auto;
+    margin-right: auto;
+}
+.wrapperClass {
+    margin-left: auto;
+    margin-right: auto;
+}
