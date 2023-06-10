@@ -25,10 +25,10 @@ export class App extends Component {
   async componentDidUpdate(_prevProps, prevState) {
     const { searchWord, page } = this.state;
     if (prevState.searchWord !== searchWord || prevState.page !== page) {
-      this.setState({ isLoading: true });
       try {
+        this.setState({ isLoading: true, error: null });
         const resp = await loadImagesPixabay(searchWord, page);
-      //  console.log('didMount: ', resp);
+        //  console.log('didMount: ', resp);
         if (!resp.length) {
           this.setState({
             isEmpty: true,
@@ -45,8 +45,9 @@ export class App extends Component {
       } catch (error) {
         console.log(error.message);
         this.setState({ error: error.message });
+      } finally {
+        this.setState({ isLoading: false });
       }
-      this.setState({ isLoading: false });
     }
   }
 
@@ -101,10 +102,16 @@ export class App extends Component {
         )}
         {showMoreBtn && <Button onLoadMore={this.onLoadMore} />}
         {showModal && (
-          <Modal bigImage={bigImage} onClose={this.onCloseModal}>
+          <Modal
+            onClose={this.onCloseModal}
+            bigImage={bigImage}
+          >
           </Modal>
         )}
       </div>
     );
   }
 }
+
+
+        //  <Modal bigImage={bigImage} onClose={this.onCloseModal}></Modal>;
