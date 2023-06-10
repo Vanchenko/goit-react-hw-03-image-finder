@@ -28,7 +28,6 @@ export class App extends Component {
       try {
         this.setState({ isLoading: true, error: null });
         const resp = await loadImagesPixabay(searchWord, page);
-        //  console.log('didMount: ', resp);
         if (!resp.length) {
           this.setState({
             isEmpty: true,
