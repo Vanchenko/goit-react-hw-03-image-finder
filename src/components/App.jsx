@@ -79,7 +79,8 @@ export class App extends Component {
   };
 
   render() {
-    const { showModal, showMoreBtn, isLoading, isEmpty, bigImage, images } = this.state;
+    const { showModal, showMoreBtn, isLoading, isEmpty, bigImage, images } =
+      this.state;
     return (
       <div className={css.App}>
         <Searchbar SearchOnSubmit={this.onSubmit} />
@@ -90,7 +91,7 @@ export class App extends Component {
             height="80"
             width="80"
             ariaLabel="blocks-loading"
-            wrapperStyle={{ }}
+            wrapperStyle={{}}
             wrapperClass={css.wrapperClass}
             colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
           />
@@ -102,16 +103,11 @@ export class App extends Component {
         )}
         {showMoreBtn && <Button onLoadMore={this.onLoadMore} />}
         {showModal && (
-          <Modal
-            onClose={this.onCloseModal}
-            bigImage={bigImage}
-          >
-          </Modal>
+          <Modal onClose={this.onCloseModal} bigImage={bigImage}></Modal>
         )}
       </div>
     );
   }
 }
 
-
-        //  <Modal bigImage={bigImage} onClose={this.onCloseModal}></Modal>;
+//  <Modal bigImage={bigImage} onClose={this.onCloseModal}></Modal>;
