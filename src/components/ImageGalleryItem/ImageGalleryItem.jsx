@@ -3,7 +3,7 @@ import css from './ImageGalleryItem.module.css';
 
 export const ImageGalleryItem = ({  webformatURL, largeImageURL }) => (
     <li className={css.ImageGalleryItem} >
-        <img src={webformatURL} alt="" data-bigimg={ largeImageURL } />
+        <img className={css.ImageGalleryItemImage} src={webformatURL} alt="" data-bigimg={ largeImageURL } />
     </li>
 )
 
